@@ -15,7 +15,7 @@ demo. I typically configure a 128 GiB disk on the guest VM.  During RHEL
 installation, configure a regular user with `sudo` privileges on the host.
 
 These instructions assume that this repository is cloned or copied to your
-user's home directory on the host (e.g. `~/flightgear-kiosk-demo`). The
+user's home directory on the host (e.g. `~/rhel-bootc-image-gen`). The
 instructions below follow that assumption.
 
 Login to the host and then run the following commands to create an SSH
