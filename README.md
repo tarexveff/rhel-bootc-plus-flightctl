@@ -1,4 +1,4 @@
-# FlightGear Demo with RHEL Image Mode
+# RHEL Image Mode
 RHEL Image Mode enables management of edge device systems in a simplified
 way by taking advantage of container application infrastructure. By
 packaging operating system updates as an OCI container, RHEL Image Mode
@@ -6,18 +6,6 @@ simplifies the distribution and deployment of operating systems and
 their updates, easing the amount of resources necessary to maintain a
 disparate fleet of edge devices.
 
-This demo shows an edge device completely changing it's workload and
-filesystem configuration both by switching to a different bootable
-container image from the one that's currently running and by patching
-a sound issue. This demo illustrates that in a very visual and audible
-way where multiple bootable container images are built and then swapped
-to the edge device.
-
-To make this interesting, this demo runs the open source FlightGear flight
-simulator on an edge device using RHEL Image Mode. The simulator will
-run in kiosk mode with a session for an unprivileged user. A privileged
-user will also be configured on the edge device to enable switching the
-bootable container image.
 
 ## Demo Setup
 Start with a minimal install of RHEL 9.4 either on baremetal or on a guest
