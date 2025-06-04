@@ -7,7 +7,7 @@ their updates, easing the amount of resources necessary to maintain a
 disparate fleet of edge devices.
 
 
-## Demo Setup
+## Setup
 Start with a minimal install of RHEL 9.6 either on baremetal or on a guest
 VM. Use UEFI firmware, if able to, when installing your system. Also make
 sure there's sufficient disk space on the RHEL 9.4 instance to support the
@@ -30,6 +30,10 @@ Edit the `demo.conf` file and make sure the settings are correct. At a
 minimum, you should adjust the credentials for simple content access.
 The full list of options in the `demo.conf` file are shown here.
 
+This repo includes content to create a local image repository to serve RHEL image mode
+images.  If you prefer to use another image repository, please ignore all references
+to "local container registry."
+
 | Option           | Description |
 | -----------------| ----------- |
 | SCA_USER         | Your username for Red Hat Simple Content Access |
@@ -37,12 +41,11 @@ The full list of options in the `demo.conf` file are shown here.
 | EPEL_URL         | The Extra Packages for Enterprise Linux URL |
 | EDGE_USER        | The name of a user on the target edge device |
 | EDGE_PASS        | The plaintext password for the user on the target edge device |
-| DEMO_USER        | Unprivileged user on the edge device in kiosk mode |
 | BOOT_ISO         | Minimal boot ISO used to create a custom ISO with a custom kickstart file |
 | EDGE_HASH        | A SHA-512 hash of the EDGE_PASS parameter |
 | SSH_PUB_KEY      | The SSH public key of a user on the target edge device |
-| HOSTIP           | The IP address of the local container registry |
-| REGISTRYPORT     | The port for the local container registry |
+| HOSTIP           | The IP address of the local container registry - if relevant|
+| REGISTRYPORT     | The port for the local container registry - if relevant |
 | CONTAINER_REPO   | The fully qualified name for your bootable container repository |
 | REGISTRYINSECURE | Boolean for whether the registry requires TLS |
 
