@@ -73,7 +73,7 @@ podman image tag quay.io/flightctl/flightctl-worker:0.7.1 $CONTAINER_REPO/flight
 
 
 #Push to local registry
-podman push $CONTAINER_REPO/keycloak/keycloak:25.0.1
+podman push $CONTAINER_REPO/keycloak/keycloak:latest
 podman push $CONTAINER_REPO/openshift/origin-cli:4.20.0
 podman push $CONTAINER_REPO/sclorg/postgresql-16-c9s:latest
 podman push $CONTAINER_REPO/library/redis:7.4.1
