@@ -16,7 +16,7 @@ skopeo copy --dest-tls-verify=false docker://quay.io/flightctl/flightctl-periodi
 skopeo copy --dest-tls-verify=false docker://quay.io/flightctl/flightctl-ui:0.7.1 docker://$CONTAINER_REPO/flightctl/flightctl-ui:latest
 skopeo copy --dest-tls-verify=false docker://quay.io/flightctl/flightctl-worker:0.7.1 docker://$CONTAINER_REPO/flightctl/flightctl-worker:latest
 skopeo copy --dest-tls-verify=false docker://quay.io/keycloak/keycloak:25.0.1 docker://$CONTAINER_REPO/keycloak/keycloak:latest
-skopeo copy --dest-tls-verify=false docker://quay.io/quay.io/openshift/origin-cli:4.20.0 docker://$CONTAINER_REPO/openshift/origin-cli:latest
+skopeo copy --dest-tls-verify=false docker://quay.io/openshift/origin-cli:4.20.0 docker://$CONTAINER_REPO/openshift/origin-cli:latest
 skopeo copy --dest-tls-verify=false docker://quay.io/sclorg/postgresql-16-c9s:20250214 docker://$CONTAINER_REPO/sclorg/postgresql-16-c9s:latest
 skopeo copy --dest-tls-verify=false docker://docker.io/library/redis:7.4.1 docker://$CONTAINER_REPO/library/redis:latest
 exit 0
