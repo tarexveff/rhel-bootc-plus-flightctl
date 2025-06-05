@@ -6,6 +6,10 @@ The repo also contains artifacts for creating a FlightCtl server (both connected
 At the moment, the files contained in this repository are a bit haphazard and disorganized
 but this will be fixed in the near term.
 
+# FlightCtl
+
+Content TBD (from https://github.com/flightctl/flightctl/blob/main/docs/user/introduction.md)
+
 # RHEL Image Mode
 RHEL Image Mode enables management of edge device systems in a simplified
 way by taking advantage of container application infrastructure. By
@@ -93,9 +97,6 @@ container.
     podman pull registry.redhat.io/rhel9/rhel-bootc:9.6
 
 At this point, setup is complete.
-
-## Build FlightCtl server
-TBD
 
 ## Build the base container image
 Use the following command to build the `base` bootable container
