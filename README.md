@@ -94,6 +94,9 @@ container.
 
 At this point, setup is complete.
 
+## Build FlightCtl server
+TBD
+
 ## Build the base container image
 Use the following command to build the `base` bootable container
 image. This image contains the Firefox browser running in kiosk mode.
