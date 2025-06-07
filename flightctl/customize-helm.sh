@@ -22,7 +22,7 @@ gunzip < ./flightctl-local-helm-template.tgz | tar xf -
 
 sed -i -e "s,POSTGRES-VARIABLE-SUB,$postgresImage," ./flightctl-local-helm/values.yaml
 sed -i -e "s,REDIS-VARIABLE-SUB,$redisImage," ./flightctl-local-helm/values.yaml
-sed -i -e "s,UI-VARIABLE-SUB,$uiImage," ./flightctl-local-helm/values.yaml
+sed -i -e "s,API-VARIABLE-SUB,$apiImage," ./flightctl-local-helm/values.yaml
 sed -i -e "s,ARTIFACTS-VARIABLE-SUB,$artifactsImage," ./flightctl-local-helm/values.yaml
 sed -i -e "s,WORKER-VARIABLE-SUB,$workerImage," ./flightctl-local-helm/values.yaml
 sed -i -e "s,PERIODIC-VARIABLE-SUB,$periodicImage," ./flightctl-local-helm/values.yaml
