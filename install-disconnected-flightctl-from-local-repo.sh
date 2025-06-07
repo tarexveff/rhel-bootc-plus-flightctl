@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export HOSTIP=172.31.22.27
+export HOSTIP=x.x.x.x
 export REGISTRYPORT=5000
 export CONTAINER_REPO="$HOSTIP:$REGISTRYPORT"
 export BASEDOMAIN=test.foo.com
