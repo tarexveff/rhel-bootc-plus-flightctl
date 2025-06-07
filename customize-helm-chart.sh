@@ -15,33 +15,28 @@ export origincliImage: "$CONTAINER_REPO/openshift/origin-cli"
 export keycloakImage: "$CONTAINER_REPO/keycloak/keycloak:25.0.1"
 export uiImage: "$CONTAINER_REPO/flightctl/flightctl-ui"
 
-#in ./flightctl/values.yaml
+# Unpack templated helm chart
+gunzip < ./flightctl-local-helm-template.tgz | tar xf -
 
-sed -i -e 's/POSTGRES-VARIABLE-SUB/$postgresImage/' ./flightctl/values.yaml
-sed -i -e 's/REDIS-VARIABLE-SUB/$redisImage/' ./flightctl/values.yaml
-sed -i -e 's/POSTGRES-VARIABLE-SUB/$apiImage/' ./flightctl/values.yaml
-sed -i -e 's/POSTGRES-VARIABLE-SUB/$artifactsImage/' ./flightctl/values.yaml
-sed -i -e 's/POSTGRES-VARIABLE-SUB/$workerImage/' ./flightctl/values.yaml
-sed -i -e 's/POSTGRES-VARIABLE-SUB/$periodicImage/' ./flightctl/values.yaml
-sed -i -e 's/ORIGIN-CLI-VARIABLE-SUB/$origincliImage/' ./flightctl/values.yaml
+#Substitute image names in flightctl-local-helm/values.yaml
 
-#POSTGRES-VARIABLE-SUB
-#REDIS-VARIABLE-SUB
-#ARTIFACTS-VARIABLE-SUB
-#WORKER-VARIABLE-SUB
-#PERIODIC-VARIABLE-SUB
-#ORIGIN-CLI-VARIABLE-SUB
+sed -i -e 's/POSTGRES-VARIABLE-SUB/$postgresImage/' ./flightctl-local-helm/values.yaml
+sed -i -e 's/REDIS-VARIABLE-SUB/$redisImage/' ./flightctl-local-helm/values.yaml
+sed -i -e 's/UI-VARIABLE-SUB/$uiImage/' ./flightctl-local-helm/values.yaml
+sed -i -e 's/ARTIFACTS-VARIABLE-SUB/$artifactsImage/' ./flightctl-local-helm/values.yaml
+sed -i -e 's/WORKER-VARIABLE-SUB/$workerImage/' ./flightctl-local-helm/values.yaml
+sed -i -e 's/PERIODIC-VARIABLE-SUB/$periodicImage/' ./flightctl-local-helm/values.yaml
+sed -i -e 's/ORIGIN-CLI-VARIABLE-SUB/$origincliImage/' ./flightctl-local-helm/values.yaml
 
-#in ./flightctl-local-helm-template/charts/ui/templates/flightctl-ui-deployment.yaml
+# in ./flightctl-local-helm/charts/ui/templates/flightctl-ui-deployment.yaml
 #FLIGHTCTLUI-VARIABLE-SUB
 
-sed -i -e 's/FLIGHTCTLUI-VARIABLE-SUB/$uiImage/' ./flightctl/values.yaml
+sed -i -e 's/UI-VARIABLE-SUB/$uiImage/' ./flightctl-local-helm/charts/ui/templates/flightctl-ui-deployment.yaml
 
-#in ./flightctl-local-helm-template/charts/keycloak/values.yaml
+#Substitute image names in flightctl-local-helm/charts/keycloak/values.yaml
 
-#KEYCLOAK-VARIABLE-SUB
-#POSTGRES-VARIABLE-SUB
+sed -i -e 's/KEYCLOAK-VARIABLE-SUB/$keycloakImage/' ./flightctl-local-helm/charts/keycloak/values.yaml
+sed -i -e 's/POSTGRES-VARIABLE-SUB/$postgresImage/' ./flightctl-local-helm/charts/keycloak/values.yaml
 
-sed -i -e 's/KEYCLOAK-VARIABLE-SUB/$keycloakImage/' ./flightctl/charts/keycloak/values.yaml
-sed -i -e 's/POSTGRES-VARIABLE-SUB/$postgresImage/' ./flightctl/charts/keycloak/values.yaml
-
+# Re-pack helm chart
+tar -cvzf flightctl-local-helm.tgz ./flightctl-local-helm
