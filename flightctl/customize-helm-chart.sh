@@ -38,4 +38,5 @@ sed -i -e "s,KEYCLOAK-VARIABLE-SUB,$keycloakImage," ./flightctl-local-helm/chart
 sed -i -e "s,POSTGRES-VARIABLE-SUB,$postgresImage}," ./flightctl-local-helm/charts/keycloak/values.yaml
 
 # Re-pack helm chart
-tar -cvzf flightctl-local-helm.tgz ./flightctl-local-helm
+tar -czf flightctl-local-helm.tgz ./flightctl-local-helm
+rm -rf ./flightctl-local-helm
