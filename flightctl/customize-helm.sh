@@ -12,7 +12,7 @@ export artifactsImage=$CONTAINER_REPO/flightctl/flightct-cli-artifacts
 export workerImage=$CONTAINER_REPO/flightctl/flightctl-worker
 export periodicImage=$CONTAINER_REPO/flightctl/flightctl-periodic
 export origincliImage=$CONTAINER_REPO/openshift/origin-cli
-export keycloakImage=$CONTAINER_REPO/keycloak/keycloak:25.0.1
+export keycloakImage=$CONTAINER_REPO/keycloak/keycloak
 export uiImage=$CONTAINER_REPO/flightctl/flightctl-ui
 
 # Unpack templated helm chart
@@ -35,8 +35,8 @@ sed -i -e "s,UI-VARIABLE-SUB,$uiImage," ./flightctl-local-helm/charts/ui/templat
 #Substitute image names in flightctl-local-helm/charts/keycloak/values.yaml
 
 sed -i -e "s,KEYCLOAK-VARIABLE-SUB,$keycloakImage," ./flightctl-local-helm/charts/keycloak/values.yaml
-sed -i -e "s,POSTGRES-VARIABLE-SUB,$postgresImage}," ./flightctl-local-helm/charts/keycloak/values.yaml
+sed -i -e "s,POSTGRES-VARIABLE-SUB,$postgresImage," ./flightctl-local-helm/charts/keycloak/values.yaml
 
 # Re-pack helm chart
-tar -czf flightctl-local-helm.tgz ./flightctl-local-helm
+tar -czf flightctl-local-helm.tgz flightctl-local-helm
 rm -rf ./flightctl-local-helm
