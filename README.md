@@ -10,6 +10,14 @@ but this will be fixed in the near term.
 
 Content TBD (from https://github.com/flightctl/flightctl/blob/main/docs/user/introduction.md)
 
+## DNS Records
+
+A Record: systemname.domain.foo                 X.X.X.X
+CNAME:    ui.flightctl.systemname.domain.foo    systemname.domain.foo
+CNAME:    api.flightctl.systemname.domain.foo   systemname.domain.foo
+CNAME:    auth.systemname.domain.foo            systemname.domain.foo
+CNAME:    agent-api.systemname.domain.foo       systemname.domain.foo
+
 # RHEL Image Mode
 RHEL Image Mode enables management of edge device systems in a simplified
 way by taking advantage of container application infrastructure. By
