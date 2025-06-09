@@ -43,7 +43,7 @@ done
 
 podman save quay.io/keycloak/keycloak:25.0.1 -o keycloak.tar
 podman save quay.io/openshift/origin-cli:4.20.0 -o origin-cli.tar
-podman save quay.io/sclorg/postgresql-16-c9s:latest -o postgres.tar
+podman save quay.io/sclorg/postgresql-16-c9s:20250214 -o postgres.tar
 podman save docker.io/library/redis:7.4.1 -o redis-7.4.1.tar
 
 exit 0
