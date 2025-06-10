@@ -2,15 +2,26 @@
 
 This repository is intended to hold artifacts for creating RHEL Image Mode images 
 that will be used to image edge devices managed by FlightCtl (aka Red Hat Edge Manager).
-The repo also contains artifacts for creating a FlightCtl server (both connected and airgapped).
-At the moment, the files contained in this repository are a bit haphazard and disorganized
-but this will be fixed in the near term.
+The repo also contains instructions and artifacts for creating a fully self-contained 
+FlightCtl server plus image registry, as well as artifacts supporting a completely 
+airgapped environment.
 
 # FlightCtl
 
-Content TBD (from https://github.com/flightctl/flightctl/blob/main/docs/user/introduction.md)
+For fully internet-connected environments, please follow the documentation in the FlightCtl GitHub repo [here](https://github.com/flightctl/flightctl/blob/main/docs/user/introduction.md)
+However, if you are deploying FlightCtl in a fully airgapped or restrictively proxied enclave, the artifacts 
+in this repo should help you.  There are scripts for installing a Podman/Quadlet instance of
+a Docker private registry on your FlightCtl server if needed, and also scripts for mirroring the 
+FlightCtl, Kind, and Docker registry container images to Podman on that server for installation.
+If you have a container registry available in your enviroment, you can skip the private registry 
+installation portion.
 
 ## DNS Records
+
+FlightCtl will also need the following DNS records available in your environment.
+Bind DNS and DHCP servers can be installed on your FlightCtl server if needed or
+use existing services in your environment.  These DNS records must be resolvable
+by both the managed edge devices as well as any administrators of FlightCtl
 
 A Record: systemname.domain.foo                 X.X.X.X  
 CNAME:    ui.flightctl.systemname.domain.foo    systemname.domain.foo  

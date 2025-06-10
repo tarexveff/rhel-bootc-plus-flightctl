@@ -2,7 +2,8 @@
 
 This repository is intended to hold artifacts for creating RHEL Image Mode images 
 that will be used to image edge devices managed by FlightCtl (aka Red Hat Edge Manager).
-The repo also contains artifacts for creating a FlightCtl server (both connected and airgapped).
+The repo also contains artifacts for creating a fully self-contained 
+FlightCtl server plus container registry. both connected and airgapped).
 At the moment, the files contained in this repository are a bit haphazard and disorganized
 but this will be fixed in the near term.
 
