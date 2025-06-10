@@ -29,7 +29,7 @@ CNAME:    api.flightctl.systemname.domain.foo   systemname.domain.foo
 CNAME:    auth.systemname.domain.foo            systemname.domain.foo  
 CNAME:    agent-api.systemname.domain.foo       systemname.domain.foo  
 
-# RHEL Image Mode
+# RHEL Image Mode Background
 RHEL Image Mode enables management of edge device systems in a simplified
 way by taking advantage of container application infrastructure. By
 packaging operating system updates as an OCI container, RHEL Image Mode
@@ -38,15 +38,18 @@ their updates, easing the amount of resources necessary to maintain a
 disparate fleet of edge devices.
 
 
-## Setup
+## Initial Setup
 Start with a minimal install of RHEL 9.6 either on baremetal or on a guest
 VM. Use UEFI firmware, if able to, when installing your system. Also make
 sure there's sufficient disk space on the RHEL 9.4 instance to support the
 demo. I typically configure a 128 GiB disk on the guest VM.  During RHEL
 installation, configure a regular user with `sudo` privileges on the host.
+I have successfully deployed this setup on a NUC with 12 GB RAM and an Intel
+N97 processor, which are pretty minimal specifications, but you can likely go
+even lower on RAM if needed.
 
-These instructions assume that this repository is cloned or copied to your
-user's home directory on the host (e.g. `~/rhel-bootc-image-gen`). The
+These instructions assume that this Git repository is cloned or copied to your
+user's home directory on the host (e.g. `~/rhel-bootc-plus-flightctl`). The
 instructions below follow that assumption.
 
 Login to the host and then run the following commands to create an SSH
@@ -54,12 +57,12 @@ keypair that you'll use later to access the edge device. Even though you
 really should set a passphrase, skip that when prompted to make the demo
 a little easier to run.
 
-    cd ~/rhel-bootc-image-gen
+    cd ~/rhel-bootc-plus-flightctl
     ssh-keygen -t rsa -f ~/.ssh/id_core
 
-Edit the `demo.conf` file and make sure the settings are correct. At a
+Edit the `env.conf` file and make sure the settings are correct. At a
 minimum, you should adjust the credentials for simple content access.
-The full list of options in the `demo.conf` file are shown here.
+The full list of options in the `env.conf` file are shown here.
 
 This repo includes content to create a local image repository to serve RHEL image mode
 images.  If you prefer to use another image repository, please ignore all references
