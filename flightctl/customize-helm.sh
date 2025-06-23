@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#
+# !!!!! This must be run against the flightctl-local-helm-template.tgz archive in this repository !!!!!
+#
 
 export HOSTIP=172.31.22.27
 export REGISTRYPORT=5000
