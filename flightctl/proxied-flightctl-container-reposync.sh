@@ -11,9 +11,6 @@
 # https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/securing_networks/using-shared-system-certificates_securing-networks
 #
 #
-# !!!!! This script requires that the flightctl-local-helm-template.tgz archive in this repository is downloaded to the same directory !!!!!
-# https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/flightctl-local-helm-template.tgz
-#
 
 # Customize the CONTAINER_REPO for the local registry in your environment where containers will be copied to
 
