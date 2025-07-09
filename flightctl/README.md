@@ -22,9 +22,10 @@ CNAME:    agent-api.systemname.domain.foo       systemname.domain.foo
 ## Proxied Environment Instructions
 
 I have found that FlightCtl installation is challenging in environemnts with SSL proxies, since
-the helm installation process into Kind doesn't seem to honor the host system CA certificate trusts.
-This process pulls the container images for everything (except Kind itself) to your local container repository
-using Skopeo, and then uses a customized helm chart to perform the installation from those images.
+the helm installation process into Kind doesn't seem to honor the host system CA certificate trusts.  This script will perform Skopeo copies of the FlightCtl/dependancy containers to your container registry
+so that your proxy does not block the helm installation of FlightCtl into Kind, and then uses a customized helm chart to perform the installation from those images.  There may be a more elegant way
+to achieve this, but this process should work for you, and may also help other builds that have issues with your proxy.  
+This process can also be adapted for fully disconnected installations (addressed in other scripts in this repo) 
 * Make sure you have cloned this entire repo or download the [templated helm chart](https://github.com/tarexveff/rhel-bootc-plus-flightctl/raw/refs/heads/main/flightctl/flightctl-local-helm-template.tgz) into the same directory as this script first.  It needs to be named `flightctl-local-helm-template.tgz`.
 * Edit the CONTAINER_REPO variable to what makes sense for your environment in this script: ([proxied-flightctl-container-reposync.sh](https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/proxied-flightctl-container-reposync.sh "proxied-flightctl-container-reposync.sh")).  Running this script will result in a customized helm chart that references your local container registry, based on the template chart that the script uses, and will also perform Skopeo copies of the FlightCtl/dependancy containers to your container registry, the locations of which have been placed into the customized helm chart.
 * After following the [FlightCtl instructions for installing Kind and other dependencies](https://github.com/flightctl/flightctl/blob/main/docs/user/getting-started.md), replace the "helm upgrade" step command with the following variation that uses the customized helm chart created above:  `helm upgrade --install --namespace flightctl --create-namespace flightctl ./flightctl-local-helm.tgz`
