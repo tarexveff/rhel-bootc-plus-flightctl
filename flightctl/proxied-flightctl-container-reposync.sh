@@ -10,7 +10,9 @@
 # Ideally, make sure your proxy's CA certificate is trusted by the RHEL system you are running this on, though the TLS verify flag for skopeo might be enough:
 # https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/securing_networks/using-shared-system-certificates_securing-networks
 #
-#
+# Make sure you have cloned this entire repo or download the templated helm chart into the same directory as this script first.  It needs to be named flightctl-local-helm-template.tgz
+# https://github.com/tarexveff/rhel-bootc-plus-flightctl/raw/refs/heads/main/flightctl/flightctl-local-helm-template.tgz 
+# 
 
 # Customize the CONTAINER_REPO for the local registry in your environment where containers will be copied to
 
@@ -38,9 +40,8 @@ export origincliImage=$CONTAINER_REPO/openshift/origin-cli
 export keycloakImage=$CONTAINER_REPO/keycloak/keycloak
 export uiImage=$CONTAINER_REPO/flightctl/flightctl-ui
 
-# Download and unpack templated helm chart
+# Unpack templated helm chart
 
-curl -k https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/flightctl-local-helm-template.tgz > flightctl-local-helm-template.tgz
 gunzip < ./flightctl-local-helm-template.tgz | tar xf -
 
 #Substitute image names in flightctl-local-helm/values.yaml
