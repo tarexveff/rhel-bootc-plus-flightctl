@@ -25,17 +25,9 @@ I have found that FlightCtl installation is challenging in environemnts with SSL
 the helm installation process into Kind doesn't seem to honor the host system CA certificate trusts.
 This process pulls the container images for everything (except Kind itself) to your local container repository
 using Skopeo, and then uses a customized helm chart to perform the installation from those images.
-* Item
-* Item
-* Item
-
-
-Some text with [customize-helm.sh][1] and
-another [flightctl-local-helm-template.tgz][2] and another [proxied-flightctl-container-reposync.sh][3]
-[1]: https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/customize-helm.sh
-[2]: https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/flightctl-local-helm-template.tgz
-[3]: https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/proxied-flightctl-container-reposync.sh
-
+* [link](https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/customize-helm.sh "customize-helm.sh")
+* [link](https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/flightctl-local-helm-template.tgz "flightctl-local-helm-template.tgz")
+* [link](https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/proxied-flightctl-container-reposync.sh "proxied-flightctl-container-reposync.sh")
 
 
 
