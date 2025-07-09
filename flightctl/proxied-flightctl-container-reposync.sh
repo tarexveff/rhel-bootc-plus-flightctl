@@ -66,5 +66,3 @@ sed -i -e "s,POSTGRES-VARIABLE-SUB,$postgresImage," ./flightctl-local-helm/chart
 # Re-pack helm chart
 tar -czf flightctl-local-helm.tgz flightctl-local-helm
 rm -rf ./flightctl-local-helm
-
-exit 0
