@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 #
+# This script will perform Skopeo copies of the FlightCtl/dependancy containers to your container registry
+# so that your proxy does not block the helm installation of FlightCtl into Kind.  There may be a more elegant way
+# to achieve this, but this process should work for you, and may also help other builds that have issues with your proxy.  
+# This process can also be adapted for fully disconnected installations (addressed in other scripts in this repo)
+# The script also creates a customized helm chart that references your local container registry,
+# based on the template chart you will download below.
+#
 # Ideally, make sure your proxy's CA certificate is trusted by the RHEL system you are running this on, though the TLS verify flag for skopeo might be enough:
 # https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/securing_networks/using-shared-system-certificates_securing-networks
 #
@@ -8,11 +15,9 @@
 # https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/flightctl-local-helm-template.tgz
 #
 
-# FQDN works for HOSTIP as well
+# Customize the CONTAINER_REPO for the local registry in your environment where containers will be copied to
 
-export REGISTRYPORT=5000
-export HOSTIP=X.X.X.X
-export CONTAINER_REPO="$HOSTIP:$REGISTRYPORT"
+export CONTAINER_REPO=registry.foo:5000
 export FLIGHTCTL_VERSION=0.8.0
 
 skopeo copy --dest-tls-verify=false docker://quay.io/flightctl/flightctl-cli-artifacts:$FLIGHTCTL_VERSION docker://$CONTAINER_REPO/flightctl/flightct-cli-artifacts:latest
