@@ -26,8 +26,7 @@ skopeo copy --dest-tls-verify=false docker://quay.io/keycloak/keycloak:25.0.1 do
 skopeo copy --dest-tls-verify=false docker://quay.io/openshift/origin-cli:4.20.0 docker://$CONTAINER_REPO/openshift/origin-cli:latest
 skopeo copy --dest-tls-verify=false docker://quay.io/sclorg/postgresql-16-c9s:20250214 docker://$CONTAINER_REPO/sclorg/postgresql-16-c9s:latest
 skopeo copy --dest-tls-verify=false docker://quay.io/sclorg/redis-7-c9s:20250108 docker://$CONTAINER_REPO/library/redis:latest
-exit 0
-fi
+
 
 export postgresImage=$CONTAINER_REPO/sclorg/postgresql-16-c9s
 export redisImage=$CONTAINER_REPO/library/redis
