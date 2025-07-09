@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Make sure your proxy's CA certificate is trusted by the RHEL system you are running this on:
+# Ideally, make sure your proxy's CA certificate is trusted by the RHEL system you are running this on, though the TLS verify flag for skopeo might be enough:
 # https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/securing_networks/using-shared-system-certificates_securing-networks
 #
 #
@@ -8,15 +8,18 @@
 # https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/flightctl-local-helm-template.tgz
 #
 
+# FQDN works for HOSTIP as well
+
 export REGISTRYPORT=5000
 export HOSTIP=172.31.22.27
 export CONTAINER_REPO="$HOSTIP:$REGISTRYPORT"
+export FLIGHTCTL_VERSION=0.8.0
 
-skopeo copy --dest-tls-verify=false docker://quay.io/flightctl/flightctl-cli-artifacts:0.8.0 docker://$CONTAINER_REPO/flightctl/flightct-cli-artifacts:latest
-skopeo copy --dest-tls-verify=false docker://quay.io/flightctl/flightctl-api:0.8.0 docker://$CONTAINER_REPO/flightctl/flightctl-api:latest
-skopeo copy --dest-tls-verify=false docker://quay.io/flightctl/flightctl-periodic:0.8.0 docker://$CONTAINER_REPO/flightctl/flightctl-periodic:latest
-skopeo copy --dest-tls-verify=false docker://quay.io/flightctl/flightctl-ui:0.8.0 docker://$CONTAINER_REPO/flightctl/flightctl-ui:latest
-skopeo copy --dest-tls-verify=false docker://quay.io/flightctl/flightctl-worker:0.8.0 docker://$CONTAINER_REPO/flightctl/flightctl-worker:latest
+skopeo copy --dest-tls-verify=false docker://quay.io/flightctl/flightctl-cli-artifacts:$FLIGHTCTL_VERSION docker://$CONTAINER_REPO/flightctl/flightct-cli-artifacts:latest
+skopeo copy --dest-tls-verify=false docker://quay.io/flightctl/flightctl-api:$FLIGHTCTL_VERSION docker://$CONTAINER_REPO/flightctl/flightctl-api:latest
+skopeo copy --dest-tls-verify=false docker://quay.io/flightctl/flightctl-periodic:$FLIGHTCTL_VERSION docker://$CONTAINER_REPO/flightctl/flightctl-periodic:latest
+skopeo copy --dest-tls-verify=false docker://quay.io/flightctl/flightctl-ui:$FLIGHTCTL_VERSION docker://$CONTAINER_REPO/flightctl/flightctl-ui:latest
+skopeo copy --dest-tls-verify=false docker://quay.io/flightctl/flightctl-worker:$FLIGHTCTL_VERSION docker://$CONTAINER_REPO/flightctl/flightctl-worker:latest
 skopeo copy --dest-tls-verify=false docker://quay.io/keycloak/keycloak:25.0.1 docker://$CONTAINER_REPO/keycloak/keycloak:latest
 skopeo copy --dest-tls-verify=false docker://quay.io/openshift/origin-cli:4.20.0 docker://$CONTAINER_REPO/openshift/origin-cli:latest
 skopeo copy --dest-tls-verify=false docker://quay.io/sclorg/postgresql-16-c9s:20250214 docker://$CONTAINER_REPO/sclorg/postgresql-16-c9s:latest
