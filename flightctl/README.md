@@ -25,9 +25,9 @@ I have found that FlightCtl installation is challenging in environemnts with SSL
 the helm installation process into Kind doesn't seem to honor the host system CA certificate trusts.
 This process pulls the container images for everything (except Kind itself) to your local container repository
 using Skopeo, and then uses a customized helm chart to perform the installation from those images.
-* [link](https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/customize-helm.sh "customize-helm.sh")
-* [link](https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/flightctl-local-helm-template.tgz "flightctl-local-helm-template.tgz")
-* [link](https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/proxied-flightctl-container-reposync.sh "proxied-flightctl-container-reposync.sh")
+* Download this file([flightctl-local-helm-template.tgz](https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/flightctl-local-helm-template.tgz "flightctl-local-helm-template.tgz")) and make sure it is in the same directory as the following script.
+* Edit the HOSTIP and REGISTRYPORT for your container registry to what makes sense for your environment in this script: [customize-helm.sh](https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/customize-helm.sh "customize-helm.sh").  Running this script will result in a customized helm chart that references your local container registry, based on the template chart you downloaded above.
+* Edit the HOSTIP and REGISTRYPORT in this script ([proxied-flightctl-container-reposync.sh](https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/proxied-flightctl-container-reposync.sh "proxied-flightctl-container-reposync.sh")) as you did in the previous one.  Running it will perform Skopeo copies of the FlightCtl/dependancy containers to your container registry, the locations of which have been placed into the customized helm chart 
 
 
 

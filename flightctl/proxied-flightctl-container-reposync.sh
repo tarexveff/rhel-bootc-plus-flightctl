@@ -3,6 +3,10 @@
 # Make sure your proxy's CA certificate is trusted by the RHEL system you are running this on:
 # https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/securing_networks/using-shared-system-certificates_securing-networks
 #
+#
+# !!!!! This script requires that the flightctl-local-helm-template.tgz archive in this repository is downloaded to the same directory !!!!!
+# https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/flightctl-local-helm-template.tgz
+#
 
 export REGISTRYPORT=5000
 export HOSTIP=172.31.22.27
@@ -20,5 +24,40 @@ skopeo copy --dest-tls-verify=false docker://quay.io/sclorg/redis-7-c9s:20250108
 exit 0
 fi
 
+export postgresImage=$CONTAINER_REPO/sclorg/postgresql-16-c9s
+export redisImage=$CONTAINER_REPO/library/redis
+export apiImage=$CONTAINER_REPO/flightctl/flightctl-api
+export artifactsImage=$CONTAINER_REPO/flightctl/flightct-cli-artifacts
+export workerImage=$CONTAINER_REPO/flightctl/flightctl-worker
+export periodicImage=$CONTAINER_REPO/flightctl/flightctl-periodic
+export origincliImage=$CONTAINER_REPO/openshift/origin-cli
+export keycloakImage=$CONTAINER_REPO/keycloak/keycloak
+export uiImage=$CONTAINER_REPO/flightctl/flightctl-ui
+
+# Unpack templated helm chart
+gunzip < ./flightctl-local-helm-template.tgz | tar xf -
+
+#Substitute image names in flightctl-local-helm/values.yaml
+
+sed -i -e "s,POSTGRES-VARIABLE-SUB,$postgresImage," ./flightctl-local-helm/values.yaml
+sed -i -e "s,REDIS-VARIABLE-SUB,$redisImage," ./flightctl-local-helm/values.yaml
+sed -i -e "s,API-VARIABLE-SUB,$apiImage," ./flightctl-local-helm/values.yaml
+sed -i -e "s,ARTIFACTS-VARIABLE-SUB,$artifactsImage," ./flightctl-local-helm/values.yaml
+sed -i -e "s,WORKER-VARIABLE-SUB,$workerImage," ./flightctl-local-helm/values.yaml
+sed -i -e "s,PERIODIC-VARIABLE-SUB,$periodicImage," ./flightctl-local-helm/values.yaml
+sed -i -e "s,ORIGIN-CLI-VARIABLE-SUB,$origincliImage," ./flightctl-local-helm/values.yaml
+
+# in ./flightctl-local-helm/charts/ui/templates/flightctl-ui-deployment.yaml
+
+sed -i -e "s,UI-VARIABLE-SUB,$uiImage," ./flightctl-local-helm/charts/ui/templates/flightctl-ui-deployment.yaml
+
+#Substitute image names in flightctl-local-helm/charts/keycloak/values.yaml
+
+sed -i -e "s,KEYCLOAK-VARIABLE-SUB,$keycloakImage," ./flightctl-local-helm/charts/keycloak/values.yaml
+sed -i -e "s,POSTGRES-VARIABLE-SUB,$postgresImage," ./flightctl-local-helm/charts/keycloak/values.yaml
+
+# Re-pack helm chart
+tar -czf flightctl-local-helm.tgz flightctl-local-helm
+rm -rf ./flightctl-local-helm
 
 exit 0
