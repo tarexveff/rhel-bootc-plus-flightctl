@@ -42,7 +42,9 @@ export origincliImage=$CONTAINER_REPO/openshift/origin-cli
 export keycloakImage=$CONTAINER_REPO/keycloak/keycloak
 export uiImage=$CONTAINER_REPO/flightctl/flightctl-ui
 
-# Unpack templated helm chart
+# Download and unpack templated helm chart
+
+curl -k https://github.com/tarexveff/rhel-bootc-plus-flightctl/blob/main/flightctl/flightctl-local-helm-template.tgz > flightctl-local-helm-template.tgz
 gunzip < ./flightctl-local-helm-template.tgz | tar xf -
 
 #Substitute image names in flightctl-local-helm/values.yaml
