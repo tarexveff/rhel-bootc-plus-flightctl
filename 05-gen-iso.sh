@@ -31,7 +31,7 @@ EOF
 
 if [ "$REGISTRYINSECURE" = true ]
 then
-    cat >> bootc-flightgear.ks << EOF1
+    cat >> bootc-rhel-gnome.ks << EOF1
 
 %pre
 mkdir -p /etc/containers/registries.conf.d
