@@ -1,8 +1,0 @@
-##
-## This creates a base RHEL bootc image
-## 
-FROM registry.redhat.io/rhel9/rhel-bootc:9.6
-
-# configure an insecure local registry - uncomment if you want this
-#RUN  mkdir -p /etc/containers/registries.conf.d
-#COPY 999-local-registry.conf /etc/containers/registries.conf.d/
