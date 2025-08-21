@@ -8,4 +8,4 @@
 
 podman login registry.redhat.io
 podman pull registry.redhat.io/rhel9/rhel-bootc:9.6
-podman build -t "${IMAGE_NAME}" --build-arg USER_PASSWD="${USER_PASSWORD}" -f BaseContainerFile-gnome
+podman build -t "${IMAGE_NAME}:base" --build-arg USER_PASSWD="${USER_PASSWORD}" -f BaseContainerFile-gnome
