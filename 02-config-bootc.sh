@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. $(dirname $0)/demo.conf
+. $(dirname $0)/env.conf
 
 [[ $EUID -ne 0 ]] && exit_on_error "Must run as root"
 
