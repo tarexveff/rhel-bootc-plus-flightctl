@@ -4,7 +4,7 @@
 
 [[ $EUID -ne 0 ]] && exit_on_error "Must run as root"
 
-cat > bootc-flightgear.ks <<EOF
+cat > bootc-rhel-gnome.ks <<EOF
 #
 # kickstart to pull down and install OCI container as the operating system
 #
@@ -24,7 +24,7 @@ part / --grow --fstype xfs
 
 # Here's where we reference the container image to install--notice the kickstart
 # has no '%packages' section! What's being installed here is a container image.
-ostreecontainer --url ${CONTAINER_REPO}:base
+ostreecontainer --url ${IMAGE_NAME}:base
 
 reboot
 EOF
