@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. $(dirname $0)/demo.conf
+. $(dirname $0)/env.conf
 
 [[ $EUID -ne 0 ]] && exit_on_error "Must run as root"
 
@@ -26,10 +26,6 @@ part / --grow --fstype xfs
 # has no '%packages' section! What's being installed here is a container image.
 ostreecontainer --url ${CONTAINER_REPO}:base
 
-# optionally add a user
-user --name ${EDGE_USER} --groups wheel --iscrypted --password ${EDGE_HASH}
-sshkey --username ${EDGE_USER} "${SSH_PUB_KEY}"
-
 reboot
 EOF
 
@@ -49,5 +45,5 @@ EOF1
 fi
 
 rm -f bootc-flightgear.iso
-mkksiso --ks bootc-flightgear.ks $BOOT_ISO bootc-flightgear.iso
+mkksiso --ks bootc-rhel-gnome.ks $BOOT_ISO bootc-rhel-gnome.iso
 
