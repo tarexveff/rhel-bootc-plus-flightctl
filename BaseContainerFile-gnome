@@ -1,0 +1,26 @@
+FROM registry.redhat.io/rhel9/rhel-bootc:9.6
+
+# configure an insecure local registry
+RUN  mkdir -p /etc/containers/registries.conf.d
+COPY 999-local-registry.conf /etc/containers/registries.conf.d/
+
+# Set graphical target for laptops
+RUN  systemctl set-default graphical.target
+
+# Create a default 'redhat' user with the specified password.
+
+ARG USER_PASSWD
+RUN if [ -z "${USER_PASSWD}" ] ; then \
+        echo USER_PASSWD is a mandatory build argument && exit 1 ; \
+    fi
+RUN useradd -m -d /var/home/redhat redhat && \
+    echo "redhat:${USER_PASSWD}" | chpasswd
+
+# Install Flight Control agent and configuration
+
+RUN dnf -y copr enable @redhat-et/flightctl rhel-9-x86_64 && \
+    dnf -y install flightctl-agent && \
+    dnf -y clean all && \
+    systemctl enable flightctl-agent.service
+
+ADD config.yaml /etc/flightctl/
