@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# test
 
 . $(dirname $0)/env.conf
 
